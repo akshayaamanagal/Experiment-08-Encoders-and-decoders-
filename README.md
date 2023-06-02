@@ -1,9 +1,11 @@
 # Experiment-08- Encoders-and-decoders 
-### AIM: To implement 8 to 3 Encoder and  3to8 Decoder using verilog and validate its outputs
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
-### THEORY 
-
+# AIM: 
+## To implement 8 to 3 Encoder and  3to8 Decoder using verilog and validate its outputs
+# HARDWARE REQUIRED:  
+## PC, Cyclone II , USB flasher
+# SOFTWARE REQUIRED:
+## Quartus prime
+# THEORY 
 ## Encoders
 Binary code of N digits can be used to store 2N distinct elements of coded information. This is what encoders and decoders are used for. Encoders convert 2N lines of input into a code of N bits and Decoders decode the N bits into 2N lines.
 
@@ -27,7 +29,7 @@ Hence, the encoder can be realised with OR gates as follows:
 ![image](https://user-images.githubusercontent.com/36288975/171543740-68403b82-aa93-4c98-9343-f32b14885a2e.png)
 ## Figure -02 3 to 8 Encoder implenentation 
 
- ### Decoders 
+ ## Decoders 
 A decoder does the opposite job of an encoder. It is a combinational circuit that converts n lines of input into 2n lines of output.
 
 Let’s take an example of 3-to-8 line decoder.
@@ -54,43 +56,64 @@ D7 = X Y Z
 ![image](https://user-images.githubusercontent.com/36288975/171543866-5a6eace6-8683-49d7-9c4f-a7cb30ec3035.png)
 ## Figure -04 8 to 3 Decoder implementation 
 
-### Procedure
-/* write all the steps invloved */
+# Procedure
+Step-1: create module encoder and decoder.
 
+Step-2: Get inputs and outputs for encoders and decoders.
 
+Step-3: perform or operation for encoder and and logic for decoders.
 
-### PROGRAM 
-/*
+Step-4: perform RTL LOGIC and get waveform.
+
+Step-5: End the module.
+
+# PROGRAM 
+```
 Program for Endocers and Decoders  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
+Developed by: Akshayaa M
+RegisterNumber:  212222230009
 
+For ENCODER:
+module enc(a0,a1,a2,y0,y1,y2,y3,y4,y5,y6,y7);
+input y0,y1,y2,y3,y4,y5,y6,y7;
+output a0,a1,a2;
+or(a0,y7,y5,y3,y1);
+or(a1,y7,y6,y3,y2);
+or(a2,y7,y6,y5,y4);
+endmodule
 
-
-
-
-
-### RTL LOGIC  
-
-
-
-
-
-
-
-
-### TIMING DIGRAMS  
-
-
-
-
-
-### TRUTH TABLE 
-
-
-
-
-
-
-### RESULTS 
+For DECODER:
+module dec (a0,a1,a2,y0,y1,y2,y3,y4,y5,y6,y7);
+input a0,a1,a2;
+output y0,y1,y2,y3,y4,y5,y6,y7;
+wire a0bar,a1bar,a2bar;
+not(a0bar,a0);
+not(a1bar,a1);
+not(a2bar,a2);
+and(y0,a0bar,a1bar,a2bar);
+and(y1,a0,a1bar,a2bar);
+and(y2,a0bar,a1,a2bar);
+and(y3,a0,a1,a2bar);
+and(y4,a0bar,a1bar,a2);
+and(y5,a0,a1bar,a2);
+and(y6,a0bar,a1,a2);
+and(y7,a0,a1,a2);
+endmodule
+```
+# RTL LOGIC  
+## For ENCODER:
+![experiment-08-encoders-and-decoders](enc.png)
+## For DECODER:
+![experiment-08-encoders-and-decoders](dec.png)
+# TIMING DIGRAMS  
+## For ENCODER:
+![experiment-08-encoders-and-decoders](encwave.png)
+## For DECODER:
+![experiment-08-encoders-and-decoders](decwave.png)
+# TRUTH TABLE 
+## For ENCODER:
+![experiment-08-encoders-and-decoders](enctt.png)
+## For DECODER:
+![experiment-08-encoders-and-decoders](dectt.png)
+# RESULTS 
+Thus the program to desing encoder and decoder is completed.
